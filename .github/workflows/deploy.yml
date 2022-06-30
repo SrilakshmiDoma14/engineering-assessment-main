@@ -9,7 +9,7 @@ env:
   ECR_REPOSITORY: "ecr_registry"           
   ECS_SERVICE: "FT_service"                 
   ECS_CLUSTER: "FoodTruck"                 
-  ECS_TASK_DEFINITION: "FTT" 
+  ECS_TASK_DEFINITION: ft.json
   CONTAINER_NAME: "ft_cont" 
 
 jobs:
