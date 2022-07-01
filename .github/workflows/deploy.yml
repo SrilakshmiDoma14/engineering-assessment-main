@@ -7,7 +7,7 @@ on:
 env:
   AWS_REGION: "us-west-2"                   
   #ECR_REPOSITORY: "ecr_registry" 
-  ECR_REPOSITORY: "tf_ecr_registry"          
+  ECR_REPOSITORY: "tf_ecr_registry1"          
   ECS_SERVICE: "FT_service"                 
   ECS_CLUSTER: "FoodTruck"                 
   ECS_TASK_DEFINITION: ft.json
@@ -15,7 +15,7 @@ env:
 
 jobs:
   build:
-    name: Build
+    name: Build & Deploy
     runs-on: ubuntu-latest
 
     steps:
@@ -43,7 +43,7 @@ jobs:
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
-    - name: Fill in the new image ID in the Amazon ECS task definition
+    - name: Add image ID to ECS task definition
       id: task-def
       uses: aws-actions/amazon-ecs-render-task-definition@v1
       with:
@@ -51,7 +51,7 @@ jobs:
         container-name: ${{ env.CONTAINER_NAME }}
         image: ${{ steps.build-image.outputs.image }}
 
-    - name: Deploy Amazon ECS task definition
+    - name: Deploy ECS task definition
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
       with:
         task-definition: ${{ steps.task-def.outputs.task-definition }}
