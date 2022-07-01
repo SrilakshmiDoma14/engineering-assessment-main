@@ -17,7 +17,7 @@
                     "containerPort": 80
                 }
             ],
-            "image": "270354559873.dkr.ecr.us-west-2.amazonaws.com/ecr_registry:294a59ccb2d19e50c30fd98d8c8f14a3c22fd4a5",
+            "image": "270354559873.dkr.ecr.us-west-2.amazonaws.com/ecr_registry:06b5be9b07beb012d8ce92f5a3408a68bc3151b7",
             "name": "ft_cont"
         }
     ],
